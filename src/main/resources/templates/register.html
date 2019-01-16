@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>注册</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div>账号：<input type="text" id="account"/></div>
+<div>密码：<input type="text" id="password"/></div>
+<button onclick="register()">注册</button>
+</body>
+<script>
+    function register() {
+        var account = $("#account").val();
+        var password = $("#password").val();
+        $.ajax({
+            type: 'POST',
+            url: "/api/register",
+            contentType: "application/json",
+            data: JSON.stringify({
+                account: account,
+                password: password
+            }),
+            success: function (res) {
+                alert(res);
+                location.href = '/index/login';
+            }
+        });
+    }
+</script>
+</html>
